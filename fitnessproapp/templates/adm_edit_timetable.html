@@ -1,0 +1,204 @@
+<!doctype html>
+<!--
+	Fox by FreeHTML5.co
+	Twitter: https://twitter.com/fh5co
+	Facebook: https://fb.com/fh5co
+	URL: https://freehtml5.co
+-->
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TRAIN WITH US </title>
+  {% load static %}
+  
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/animate (2).css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min (2).css' %}" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style (2).css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Boostrap links.... -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <!-- Css Styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/flaticon.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/barfiller.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admintrainee' %}">Trainee</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admintrainer' %}">Add Trainer</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admintimetable' %}">Add TimeTable</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_userpayment' %}">View Payment</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_payment' %}">Add Payment</a>
+              </li>
+
+          </ul>
+
+        </div>
+      </nav><br><br><br>
+      <div class="row ">
+        <div class="col-12 grid-margin">
+            <h2 style="text-align:center"> <small class="text-muted">Edit Timetable </small></h2>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card" style="height: 350px;">
+                <div class="card-body">
+                    <form method="post" action="" enctype="multipart/form-data"> {% csrf_token %} 
+    
+    
+                        <div class="form-group row">
+                            <label for="exampleInputUsernam2" class="col-sm-3 col-form-label">
+                                Day
+                            </label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="batch" style="color:black;" name="batch" required>
+                                 <option selected="true" disabled="disabled" value=""></option>
+                                
+                                <option value="Morning">Sunday</option>
+                                <option value="Afternoon">Monday</option>
+                                <option value="Evening">Tuesday</option>
+                                <option value="Evening">Wednesday</option>
+                                <option value="Evening">Thursday</option>
+                                <option value="Evening">Friday</option>
+                                <option value="Evening">Saturday</option>
+                                
+                              </select>
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label for="exampleInputUsernam2" class="col-sm-3 col-form-label">
+                                FromTime
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="time" class="form-control" id="exampleInputUsername2" name="fromtime" style="color:inherit;" autocomplete="off">
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label for="exampleInputUsernam2" class="col-sm-3 col-form-label">
+                                ToTime
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="time" class="form-control" id="exampleInputUsername2" name="totime" style="color:inherit;" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="exampleInputUsernam2" class="col-sm-3 col-form-label">
+                                Workout
+                            </label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="batch" style="color:black;" name="batch" required>
+                                 <option selected="true" disabled="disabled" value=""></option>
+                                
+                                <option value="Morning">Cardio</option>
+                                <option value="Afternoon">Weight Loose</option>
+                                <option value="Evening">Yoga</option>
+                                <option value="Evening">Fitness</option>
+
+                                
+                              </select>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleInputUsernam2" class="col-sm-3 col-form-label">
+                              Workout Mode
+                          </label>
+                          <div class="col-sm-9">
+                              <select class="form-control" id="batch" style="color:black;" name="batch" required>
+                               <option selected="true" disabled="disabled" value=""></option>
+                              
+                              <option value="Morning">Fitness</option>
+                              <option value="Afternoon">Motivation</option>
+                              <option value="Evening">Workout</option>
+                              
+
+                              
+                            </select>
+                          </div>
+                          
+                         </div>
+    
+                            <br>
+                            <br>
+    
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+    
+                        <div>
+                            <center>
+                                <button type="submit" class="btn btn-success btn-icon-text mb-4">SUBMIT</button>
+                                
+                            </center>
+                        </div>
+                    </form>
+                </div>
+    
+            </div>
+        </div>
+    
+    </div>
+
+      <script src="{% static 'js/jquery.min (2).js' %}"></script>
+      <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
+      <script src="{% static 'js/parallax (2).js' %}"></script>
+      <script src="{% static 'js/wow (2).js' %}"></script>
+      <script src="{% static 'js/main (2).js' %}"></script>
+      <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+      <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+      <script src="{% static 'js/jquery.barfiller.js' %}"></script>
+      <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+      
+      </body>
+      </html>

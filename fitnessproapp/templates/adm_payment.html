@@ -1,0 +1,191 @@
+<!doctype html>
+<!--
+	Fox by FreeHTML5.co
+	Twitter: https://twitter.com/fh5co
+	Facebook: https://fb.com/fh5co
+	URL: https://freehtml5.co
+-->
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TRAIN WITH US </title>
+  {% load static %}
+  
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/animate (2).css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min (2).css' %}" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style (2).css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Boostrap links.... -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <!-- Css Styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/flaticon.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/barfiller.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admintrainee' %}">Trainee</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admintrainer' %}">Add Trainer</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admintimetable' %}">Add TimeTable</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_userpayment' %}">View Payment</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_payment' %}">Add Payment</a>
+              </li>
+
+          </ul>
+
+        </div>
+      </nav><br><br><br>
+
+      <div class="row">
+        <div class="col-lg-2 grid-margin stretch-card"></div>
+        <div class="col-lg-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-12 d-flex pb-1">
+                <div class="col-6 p-0 my-auto ">
+                  <h3 class="card-title">Payment History</h3>
+                </div>
+                <div class="col-6 d-md-flex justify-content-md-end">
+                  <!-- Button trigger modal -->
+                  <a  class="btn btn-primary btn-md"  href="{% url 'admin_pay_page' %}">
+                    Add Payment
+                  </a>
+                </div>
+              </div>
+              <input type="text" class="form-control my-2" id="myInput" onkeyup="myFunction()"
+                placeholder="Search for names.." title="Type in a name">
+              <div class="table-responsive">
+                <table class="table table-hover" id="myTable">
+                  <thead>
+                    <tr>
+                      <th>Sl.No</th>
+                      <th>Bank Name</th>
+                      <th>Acc.Number</th>
+                      <th>IFSC Code</th>
+                      <th>Payment Date</th>
+                      <th>payment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>SBI</td>
+                      <td>15435645</td>
+                      <td>32sdd</td>
+                      <td>23-12-2911</td>
+                      <td>200</td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+  
+    <!-- Modal -->
+<br><br><br><br>
+    <!-- Modal -->
+    <script>
+      $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
+    </script>
+  
+    <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+    <script>
+      $(document).ready(function () {
+        $('table tr').click(function () {
+          window.location = $(this).data('href');
+          return false;
+        });
+      });
+    </script>
+  
+    
+    
+    
+    </script>
+
+
+
+      <script src="{% static 'js/jquery.min (2).js' %}"></script>
+      <script src="{% static 'js/bootstrap.min (2).js' %}"></script>
+      <script src="{% static 'js/parallax (2).js' %}"></script>
+      <script src="{% static 'js/wow (2).js' %}"></script>
+      <script src="{% static 'js/main (2).js' %}"></script>
+      <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+      <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+      <script src="{% static 'js/jquery.barfiller.js' %}"></script>
+      <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+      
+      </body>
+      </html>

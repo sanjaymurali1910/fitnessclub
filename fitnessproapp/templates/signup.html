@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" 
+              content="width=device-width, 
+                       initial-scale=1.0" />
+        <script src="https://kit.fontawesome.com/5845bc1bb6.js" 
+                crossorigin="anonymous"></script>
+        <link href=
+"https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@600&display=swap" 
+              rel="stylesheet" />
+        <style>
+            * {
+                 margin: 0px;
+                padding: 0px;
+            }
+            body {
+                background-image: url(../static/image/15.jpg);
+                background-size: cover;
+            }
+
+            h1 {
+                border-bottom: 3px solid black;
+                margin-bottom: 10px;
+                color: black;
+                font-weight: bold;
+                background: none;
+                margin-right: 105px;
+                margin-top: 50px;
+                font-family: "Baloo Bhai 2", cursive;
+            }
+  
+            .container {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            .row1 {
+                 position: absolute;
+                left: 33%;
+            }
+  
+            .row {
+                position: relative;
+            }
+            .row input {
+                position: relative;
+                left: 25px;
+                margin: 10px;
+                padding: 10px;
+                width: 80%;
+                outline: none;
+                background: none;
+                border: 0px;
+                font-weight: bold;
+                border-bottom: 3px solid black;
+                /*font-family: "Baloo Bhai 2", cursive;*/
+            }
+            .row i {
+                position: absolute;
+                margin-top: 10px;
+                padding: 10px;
+            }
+            .btn {
+                width: 10rem;
+                border-radius: 15px;
+                background: none;
+                margin-right: 105px;
+                background-color: black;
+                color: blanchedalmond;
+                outline: none;
+                /*font-family: "Baloo Bhai 2", cursive;
+                cursor: pointer;*/
+            }
+            .btn:hover {
+                /*background-color: blue;*/
+                color: white;
+            }
+        </style>
+        <title>Transparent Login Page using HTML/CSS</title>
+    </head>
+  
+    <body>
+        <form action="signuppage" method="post">
+            {% csrf_token %}
+        <!-- <img src="{% static 'image/hero-2.jpg'%}"> -->
+        <div class="container">
+            <div class="row1">
+                <h1>SIGNUP</h1>
+                <div class="row">
+                    <i class="fas fa-address-book"></i>
+                    <input type="text" name="first_name"
+                           placeholder="FirstName" />
+                </div>
+                <div class="row">
+                    <i class="fas fa-address-book"></i>
+                    <input type="text" name="last_name"
+                           placeholder="LastName" />
+                </div>
+                <div class="row">
+                    <i class="fas fa-address-book"></i>
+                    <input type="text" name="username"
+                           placeholder=" UserName" />
+                </div>
+                <div class="row">
+                    <i class="fas fa-envelope-square"></i>
+                    <input type="email" name="email"
+                           placeholder="Email" />
+                </div>
+                <div class="row">
+                    <i class="fas fa-key"></i>
+                    <input type="password" name="password" 
+                           placeholder="password" />
+                </div>
+                <div class="row">
+                    <i class="fas fa-key"></i>
+                    <input type="password" name="cpassword" 
+                           placeholder="Confirm password" />
+                </div>
+               <center></a><button type="submit" class="btn">Submit</button></center>
+            </div>
+         </div>
+         </form>
+    </body>
+</html>
+ {% endblock %}
