@@ -86,7 +86,7 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card" style="height: 350px;">
                 <div class="card-body">
-                    <form method="post" action="" enctype="multipart/form-data"> {% csrf_token %} 
+                    <form method="post"  enctype="multipart/form-data"> {% csrf_token %} 
     
     
                         <div class="form-group row">
@@ -94,16 +94,16 @@
                                 Day
                             </label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="batch" style="color:black;" name="batch" required>
+                                <select class="form-control" id="batch" style="color:black;" name="day" required>
                                  <option selected="true" disabled="disabled" value=""></option>
                                 
-                                <option value="Morning">Sunday</option>
-                                <option value="Afternoon">Monday</option>
-                                <option value="Evening">Tuesday</option>
-                                <option value="Evening">Wednesday</option>
-                                <option value="Evening">Thursday</option>
-                                <option value="Evening">Friday</option>
-                                <option value="Evening">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
                                 
                               </select>
                             </div>
@@ -132,13 +132,13 @@
                                 Workout
                             </label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="batch" style="color:black;" name="batch" required>
+                                <select class="form-control" id="batch" style="color:black;" name="workout" required>
                                  <option selected="true"  value=""></option>
                                 
-                                <option value="Morning">Cardio</option>
-                                <option value="Afternoon">Weight Loose</option>
-                                <option value="Evening">Yoga</option>
-                                <option value="Evening">Fitness</option>
+                                <option value="Cardio">Cardio</option>
+                                <option value="Weight Lose">Weight Lose</option>
+                                <option value="Muscle">Muscle</option>
+                                <option value="Yoga">Yoga</option>
 
                                 
                               </select>
@@ -150,12 +150,12 @@
                               Workout Mode
                           </label>
                           <div class="col-sm-9">
-                              <select class="form-control" id="batch" style="color:black;" name="batch" required>
+                              <select class="form-control" id="batch" style="color:black;" name="workcate" required>
                                <option selected="true" disabled="disabled" value=""></option>
                               
-                              <option value="Morning">Fitness</option>
-                              <option value="Afternoon">Motivation</option>
-                              <option value="Evening">Workout</option>
+                              <option value="Fitness">Fitness</option>
+                              <option value="Motivation">Motivation</option>
+                              <option value="Workout">Workout</option>
                               
 
                               

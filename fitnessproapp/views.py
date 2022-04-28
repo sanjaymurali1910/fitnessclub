@@ -11,6 +11,8 @@ from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate
 from django.db.models import Q
 from .models import *
+from fitnesspro.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -34,7 +36,9 @@ def startnow(request):
 	return render(request, 'startnow.html')
 
 def shedule(request):
-	return render(request, 'timetable.html')
+	timetable=batch.objects.all()
+	data={'timetable':timetable}	
+	return render(request, 'timetable.html',data)
 
 def contact(request):
 	return render(request, 'contact.html')   
@@ -49,6 +53,15 @@ def userpayment(request):
 	return render(request, 'user_payment.html')
 
 def userpaymentpage(request):
+	if request.method=='POST':
+		n=request.POST['bankname']
+		an=request.POST['accnumber']
+		ifsc=request.POST['ifsccode']
+		am=request.POST['amount']
+		date = datetime.now()
+
+		paymenttrainee.objects.create(name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+
 	return render(request, 'user_pay_page.html')
 
 def login(request):
@@ -86,13 +99,23 @@ def onlin(request):
 	data={'online':online}
 	return render(request, 'online.html',data)
 
+def addbutonline(request):
+	button=onlinetraining.objects.get(email=em)
+	subject = 'Internship Python'
+	message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+	recipient = em
+	send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+	messages.success(request, 'Success!')
+
 def offlin(request):
 	offline=offlinetraining.objects.all()
 	data={'offline':offline}
 	return render(request, 'offline.html',data)
 
 def staffd(request):
-	return render(request, 'staffdetails.html')
+	paydata=paymenttrainer.objects.all()
+	data={'paydata':paydata}	
+	return render(request, 'staffdetails.html',data)
 
 def maint(request):
 	return render(request, 'maintra.html')
@@ -108,22 +131,64 @@ def admintrainer(request):
 	return render(request, 'adm_trainer.html')
 
 def admintimetable(request):
+	if request.method=='POST':
+		d=request.POST['day']
+		ft=request.POST['fromtime']
+		tt=request.POST['totime']
+		w=request.POST['workout']
+		wc=request.POST['workcate']
+
+		batch.objects.create(day=d,fromtime=ft,totime=tt,workout=w,workoutcate=wc)
 	return render(request, 'adm_timetable.html')
 
 def admin_view_timetable(request):
-	return render(request, 'adm_view_timetable.html')
+	timetable=batch.objects.all()
+	data={'timetable':timetable}
 
-def admin_edit_timetable(request):
+	return render(request, 'adm_view_timetable.html',data)
+
+def admin_edit_timetable(request,i_id):
+	table=batch.objects.get(id=i_id)
+	return render(request, 'adm_edit_timetable.html',{'table':table})
+
+def admin_editpage(request,i_id):
+	if request.method=='POST':
+		table=batch.objects.get(id=i_id)
+		table.fromtime = request.POST.get('fromtime')
+		table.totime = request.POST.get('totime')
+		table.save()
+		return redirect('admin_view_timetable') 
 	return render(request, 'adm_edit_timetable.html')
 
+
+def delete_batch(request,i_id):
+    table=batch.objects.get(id=i_id)
+  
+    table.delete()
+    return redirect('admin_view_timetable')
+
 def admin_userpayment(request):
-	return render(request, 'adm_viewpayment.html')
+	paydata=paymenttrainee.objects.all()
+	data={'paydata':paydata}
+	return render(request, 'adm_viewpayment.html',data)
+
 
 def admin_view_userpay(request):
 	return render(request, 'adm_view_userpayment.html')
 
 def admin_payment(request):
-	return render(request, 'adm_payment.html')
+	paydata=paymenttrainer.objects.all()
+	data={'paydata':paydata}	
+	return render(request, 'adm_payment.html',data)
 
 def admin_pay_page(request):
+	if request.method=='POST':
+		n=request.POST['bankname']
+		an=request.POST['accnumber']
+		ifsc=request.POST['ifsccode']
+		am=request.POST['amount']
+		date = datetime.now()
+
+		paymenttrainer.objects.create(name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+
 	return render(request, 'adm_pay_page.html')

@@ -16,3 +16,27 @@ class offlinetraining(models.Model):
 
     def __str__(self):
         return self.firstname
+
+class paymenttrainee(models.Model):                        
+    date = models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
+    payment = models.CharField(max_length=240, null=True)
+    name = models.CharField(max_length=240, null=True)
+    accountnumber = models.CharField(max_length=240, null=True)
+    ifsc = models.CharField(max_length=240, null=True)
+
+class paymenttrainer(models.Model):                        
+    date = models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
+    payment = models.CharField(max_length=240, null=True)
+    name = models.CharField(max_length=240, null=True)
+    accountnumber = models.CharField(max_length=240, null=True)
+    ifsc = models.CharField(max_length=240, null=True)
+
+class batch(models.Model): 
+    day = models.CharField(max_length=100)
+    fromtime = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    totime = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    workout = models.CharField(max_length=100)
+    workoutcate = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.day

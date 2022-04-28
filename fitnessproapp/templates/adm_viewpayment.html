@@ -77,6 +77,7 @@
       </nav><br><br><br>
 
       <div class="row">
+        <div class="container">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -91,48 +92,36 @@
                                     <th>Sl.No</th>
                                     <th>Name</th>
 
-                                    <th>Email</th>
-                                    <th>Contact</th>
-                                    <th>Registration End Date</th>
-                                    <th>Last Payment Date</th>
+                                    <th>Account Number</th>
+                                    <th>IFSC Code</th>
+                                    <th>Payment Date</th>
+                                    
 
-                                    <th>Registration Fee</th>
-                                    <th>Payment</th>
+                                    <th>Amount</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody id="myTable">
                                 
-
+                                {% for i in paydata %}
                                 <tr>
-                                    <td>1</td>
+                                    
+
+                                    <td>{{i.id}}</td>
                                     <td>
                                         
-                                        <span>Lijin</span>
+                                        <span>{{i.name}}</span>
                                     </td>
 
-                                    <td>ligin@gmail.com</td>
-                                    <td>7845882354</td>
-                                    <td>22-12-2022</td>
+                                    <td>{{i.accountnumber}}</td>
+                                    <td>{{i.ifsc}}</td>
+                                    <td>{{i.date}}</td>
 
 
-                                    <td>12-11-2922</td>
-                                    <td>2000</td>
-
-
-
-
-
-
-
-                                    <td>
-                                        <a class="btn btn-sm btn-primary btn-icon-text" href="{% url 'admin_view_userpay'  %}"
-                                            style="text-decoration: none;"
-                                             >
-                                                Payment
-                                            
-                                        </a>
-                                    </td>
+                                    <td>{{i.payment}}</td>
+                                    
                                 </tr>
+                                {%endfor %}
                                 
 
 
@@ -144,6 +133,7 @@
             </div>
             </div>
             </div>
+        </div>      
 
         <script>
             function myFunction() {

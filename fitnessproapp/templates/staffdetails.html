@@ -74,8 +74,8 @@
         </div>
       </nav><br><br><br>
 		<div class="row">
-			<div class="col-lg-2 grid-margin stretch-card"></div>
-			<div class="col-lg-8 grid-margin stretch-card">
+			<div class="col-lg-1 grid-margin stretch-card"></div>
+			<div class="col-lg-10 grid-margin stretch-card ">
 			  <div class="card">
 				<div class="card-body">
 				  <div class="col-12 d-flex pb-1">
@@ -102,15 +102,18 @@
 						</tr>
 					  </thead>
 					  <tbody>
-						
+						{% for i in paydata %}
 						<tr>
-						  <td>1</td>
-						  <td>SBI</td>
-						  <td>15435645</td>
-						  <td>32sdd</td>
-						  <td>23-12-2911</td>
-						  <td>200</td>
+						  
+						  <td>{{i.id}}</td>
+						  <td>{{i.name}}</td>
+						  <td>{{i.accountnumber}}</td>
+						  <td>{{i.ifsc}}</td>
+						  <td>{{i.date}}</td>
+						  <td>{{i.payment}}</td>
+						  
 						</tr>
+						{%endfor %}
 					   
 					  </tbody>
 					</table>
