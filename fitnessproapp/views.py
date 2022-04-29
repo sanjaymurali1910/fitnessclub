@@ -15,6 +15,49 @@ from fitnesspro.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 # Create your views here.
 
+def login(request):
+
+    if request.method == 'POST':
+        email  = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(username=email,password=password)
+        if user is not None:
+            request.session['SAdm_id'] = user.id
+            return redirect( 'SuperAdmin_Dashboard')
+
+        elif user_registration.objects.filter(email=request.POST['email'], password=request.POST['password'],status="trainer").exists():
+                
+                member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
+                request.session['Tnr_id'] = member.id
+                mem=user_registration.objects.filter(id= member.id)
+                
+                return render(request,'Trainer_dashboard.html',{'mem':mem})
+
+        elif user_registration.objects.filter(email=request.POST['email'], password=request.POST['password'],status="trainee").exists():
+                
+                member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
+                request.session['Tne_id'] = member.id
+                mem1=user_registration.objects.filter(id= member.id)
+                
+                return render(request,'Trainee_dashboard.html',{'mem1':mem1})
+        else:
+            context = {'msg_error': 'Invalid data'}
+            return render(request, 'login.html', context)
+    return render(request,'login.html')
+
+
+
+def signup(request):
+    if request.method == 'POST':
+        acc = user_registration()
+        acc.firstname = request.POST['first_name']
+        acc.lastname = request.POST['last_name']
+        acc.username = request.POST['username']
+        acc.email = request.POST['email']
+        acc.photo = request.FILES['file']
+        acc.password = request.POST['password']
+        acc.save()
+    return render(request,'signup.html')
 
 
 def index(request):
@@ -43,29 +86,24 @@ def shedule(request):
 def contact(request):
 	return render(request, 'contact.html')   
 
-def signup(request):
-	return render(request, 'signup.html')
-
 def join(request):
 	return render(request, 'join.html')
 
-def userpayment(request):
-	return render(request, 'user_payment.html')
+
 
 def userpaymentpage(request):
 	if request.method=='POST':
+		sn=request.POST['name']
 		n=request.POST['bankname']
 		an=request.POST['accnumber']
 		ifsc=request.POST['ifsccode']
 		am=request.POST['amount']
 		date = datetime.now()
 
-		paymenttrainee.objects.create(name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+		paymenttrainee.objects.create(sname=sn,name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
 
 	return render(request, 'user_pay_page.html')
 
-def login(request):
-	return render(request, 'login.html')
 
 def online_training(request):
 	if request.method=='POST':
@@ -123,6 +161,22 @@ def maint(request):
 
 
 
+def admhome(request):
+	return render(request, 'adm_home.html')
+
+def admreg(request):
+	det=user_registration.objects.all()
+	data={'det':det}
+	return render(request, 'adm_reg.html',data)
+
+def admregistration(request,p_id):
+	if request.method=='POST':
+		reg=user_registration.objects.get(id=p_id)
+		reg.save()
+		return redirect('adm_reg.html')
+
+	return render(request,'adm_reg.html')
+
 
 def admintrainee(request):
 	return render(request, 'adm_trainee.html')
@@ -148,23 +202,28 @@ def admin_view_timetable(request):
 	return render(request, 'adm_view_timetable.html',data)
 
 def admin_edit_timetable(request,i_id):
-	table=batch.objects.get(id=i_id)
-	return render(request, 'adm_edit_timetable.html',{'table':table})
+	timet=batch.objects.get(id=i_id)
+	return render(request, 'adm_edit_timetable.html',{'timet':timet})
 
-def admin_editpage(request,i_id):
+def admin_editpage(request,timet_id):
 	if request.method=='POST':
-		table=batch.objects.get(id=i_id)
-		table.fromtime = request.POST.get('fromtime')
-		table.totime = request.POST.get('totime')
+		table = batch.objects.get(id=timet_id)
+		table.day=request.POST.get('day')
+		table.fromtime=request.POST.get('fromtime')
+		table.totime=request.POST.get('totime')
+		table.workout=request.POST.get('workout')
+		table.workoutcate=request.POST.get('workcate')
 		table.save()
-		return redirect('admin_view_timetable') 
+		return redirect('admin_view_timetable')
+
+ 
 	return render(request, 'adm_edit_timetable.html')
 
 
-def delete_batch(request,i_id):
-    table=batch.objects.get(id=i_id)
-  
-    table.delete()
+def delete_batch(request,p_id):
+    products=batch.objects.get(id=p_id)
+    products.delete()
+
     return redirect('admin_view_timetable')
 
 def admin_userpayment(request):

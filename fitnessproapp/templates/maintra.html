@@ -55,7 +55,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="logo">
+        <div class="logo ml-5 mr-5 pr-5 ">
             <a href="{% url 'index' %}">
                 <img src="{% static 'img/logo.png' %}" alt="">
             </a>
@@ -64,21 +64,24 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav " style="float: right;" >
 
-            <li class="nav-item">
+            <li class="nav-item ml-5 pl-5 ">
                 <a class="nav-link" href="{% url 'maint' %}">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item pl-2 ">
                 <a class="nav-link" href="{% url 'onlin' %}">Online Students</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item pl-2 ">
                 <a class="nav-link" href="{% url 'offlin' %}">Offline Students</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item pl-2 ">
                 <a class="nav-link" href="{% url 'staffd' %}">Payment History</a>
               </li>
+              <li class="nav-item pl-2">
+               <a class="nav-link" href="">Logout</a>
+             </li>
 
 
           </ul>

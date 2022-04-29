@@ -89,7 +89,7 @@
     </head>
   
     <body>
-        <form action="signuppage" method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
         <!-- <img src="{% static 'image/hero-2.jpg'%}"> -->
         <div class="container">
@@ -116,15 +116,16 @@
                            placeholder="Email" />
                 </div>
                 <div class="row">
+                    <i class="fas fa-address-book"></i>
+                    <input type="file" name="file"
+                           placeholder="Image" />
+                </div>
+                <div class="row">
                     <i class="fas fa-key"></i>
                     <input type="password" name="password" 
                            placeholder="password" />
                 </div>
-                <div class="row">
-                    <i class="fas fa-key"></i>
-                    <input type="password" name="cpassword" 
-                           placeholder="Confirm password" />
-                </div>
+
                <center></a><button type="submit" class="btn">Submit</button></center>
             </div>
          </div>

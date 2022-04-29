@@ -49,7 +49,7 @@
                 <li><a href="{% url 'shedule' %}">Schedules</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
                 <li><a href="{% url 'login' %}">join</a></li>
-                <li><a href="{% url 'userpayment' %}">Payment</a></li>
+                <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -83,7 +83,7 @@
                              <li class="active"><a href="{% url 'shedule' %}">Schedules</a></li>
                              <li><a href="{% url 'contact' %}">Contact</a></li>
                              <li><a href="{% url 'login' %}">join</a></li>
-                             <li><a href="{% url 'userpayment' %}">Payment</a></li>
+                             <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -168,14 +168,11 @@
                                 {% for i in timetable %}
                                 <tr> 
                                     
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.day}}</h5></td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.fromtime}}</h5></td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.totime}}</h5></td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" >
-                                        <h5>{{i.workout}}</h5>
-                                      
-                                    </td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.workoutcate}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="{{i.workoutcate}}"> ><h5>{{i.day}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="{{i.workoutcate}}"><h5>{{i.fromtime}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="{{i.workoutcate}}" ><h5>{{i.totime}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="{{i.workoutcate}}" ><h5>{{i.workout}}</h5> </td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="{{i.workoutcate}}" ><h5>{{i.workoutcate}}</h5></td>
                                     
                                 </tr>
                                 {%endfor %}
