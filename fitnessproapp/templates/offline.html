@@ -51,6 +51,12 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <style>
+    body{
+			background-image: url({% static '/img/breadcrumb-bg.jpg' %});
+
+		}
+  </style>
 </head>
 <body>
 
@@ -70,16 +76,16 @@
             <li class="nav-item ml-5 pl-5 ">
                 <a class="nav-link" href="{% url 'maint' %}">Home</a>
               </li>
-              <li class="nav-item ml-5 ">
+              <li class="nav-item pl-4 ">
                 <a class="nav-link" href="{% url 'onlin' %}">Online Students</a>
               </li>
-              <li class="nav-item ml-5 ">
+              <li class="nav-item pl-4 ">
                 <a class="nav-link" href="{% url 'offlin' %}">Offline Students</a>
               </li>
-              <li class="nav-item ml-5 ">
+              <li class="nav-item pl-4 ">
                 <a class="nav-link" href="{% url 'staffd' %}">Payment History</a>
               </li>
-              <li class="nav-item ml-5">
+              <li class="nav-item pl-4">
                <a class="nav-link" href="">Logout</a>
              </li>
 
@@ -92,7 +98,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">OFFLINE CLASS DETAILS</h2>
+					<h2 class="heading-section" style="color: azure;">OFFLINE CLASS DETAILS</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -106,6 +112,7 @@
 							<th></th> -->
 							<th>Last Name</th>
 							<th>Email</th>
+              <th>Status</th>
 							<th>Action</th>
 						  </tr>
 						  </thead>
@@ -116,7 +123,8 @@
 						      <td>{{i.firstname}}</td>
 						      <td>{{i.lastname}}</td>
 						      <td>{{i.email}}</td>
-							  <td><button type="button" class="btn btn-primary">Add</button></td>
+                  <td>{{i.status}}</td>
+							  <td><a href="{% url 'offedit' i.id  %}" class="btn btn-primary mb-4">Add</a></td>
 						    </tr>
 							{%endfor %}
 	

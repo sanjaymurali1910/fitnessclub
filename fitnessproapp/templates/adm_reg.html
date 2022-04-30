@@ -51,6 +51,12 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <style>
+          body{
+            background-image: url({% static '/img/breadcrumb-bg.jpg' %});
+      
+          }
+        </style>
       </head>
 <body>
 
@@ -68,22 +74,22 @@
           <ul class="navbar-nav mr-auto">
 
 
-              <li class="nav-item ml-5 pl-5">
+            <li class="nav-item ml-5 pl-5">
                 <a class="nav-link" href="{% url 'admhome' %}">Home</a>
               </li>
-              <li class="nav-item ml-5 ">
+              <li class="nav-item pl-2 ">
                 <a class="nav-link" href="{% url 'admreg' %}">Registration Details</a>
               </li>
-              <li class="nav-item ml-5">
+              <li class="nav-item pl-2">
                 <a class="nav-link" href="{% url 'admintimetable' %}">Add TimeTable</a>
               </li>
-              <li class="nav-item ml-5">
+              <li class="nav-item pl-2">
                 <a class="nav-link" href="{% url 'admin_userpayment' %}">View Payment</a>
               </li>
-              <li class="nav-item ml-5">
+              <li class="nav-item pl-2">
                 <a class="nav-link" href="{% url 'admin_payment' %}">Add Payment</a>
               </li>
-              <li class="nav-item ml-5">
+              <li class="nav-item pl-2">
                 <a class="nav-link" href="">Logout</a>
               </li>
 
@@ -95,8 +101,8 @@
 
       <div class="row">
         <div class="grid-margin col-lg-3 stretch-card"> </div>
-        <form method="post" action="{% url 'admregistration' p.id %}">
-        {% csrf_token %}
+        
+        
         
         <div class="grid-margin col-lg-12 stretch-card">
             <div class="card ">
@@ -112,6 +118,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
+                                    
                                     <th>Status</th>
                                     <th>Action</th>
     
@@ -124,22 +131,10 @@
                                     <td>{{i.firstname}}</td>
                                     <td>{{i.lastname}}</td>
                                     <td>{{i.email}}</td>
-
-
-                                    <td>
-                                        <select class="badge badge-info  text-light" name="status" required>
-                                            <option value="trainee">Trainee</option>
-                                            <option value="trainer">Trainer</option>
-    
-                                        </select>
-    
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-sm btn-primary btn-icon-text">
-                                            <i class="ti-file btn-icon-prepend"></i>
-                                            Submit
-                                          </button>
-                                    </td>
+                                    
+                                    <td>{{i.status}}</td>
+                                    <td><a href="{% url 'admregedit' i.id  %}" class="btn btn-primary mb-4">Approve</a></td>
+                                    
 
                                 </tr>
                                 {%endfor %}
@@ -153,7 +148,7 @@
             </div>
         </div>
     </div>
-        </form>
+        
 </div>
     <script>
     

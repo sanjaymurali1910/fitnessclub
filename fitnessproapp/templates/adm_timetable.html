@@ -51,6 +51,12 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <style>
+          body{
+            background-image: url({% static '/img/breadcrumb-bg.jpg' %});
+      
+          }
+        </style>
       </head>
 <body>
 
@@ -68,24 +74,24 @@
           <ul class="navbar-nav mr-auto">
 
 
-              <li class="nav-item ml-5 pl-5">
-                <a class="nav-link" href="{% url 'admhome' %}">Home</a>
-              </li>
-              <li class="nav-item ml-5 ">
-                <a class="nav-link" href="{% url 'admreg' %}">Registration Details</a>
-              </li>
-              <li class="nav-item ml-5">
-                <a class="nav-link" href="{% url 'admintimetable' %}">Add TimeTable</a>
-              </li>
-              <li class="nav-item ml-5">
-                <a class="nav-link" href="{% url 'admin_userpayment' %}">View Payment</a>
-              </li>
-              <li class="nav-item ml-5">
-                <a class="nav-link" href="{% url 'admin_payment' %}">Add Payment</a>
-              </li>
-              <li class="nav-item ml-5">
-                <a class="nav-link" href="">Logout</a>
-              </li>
+            <li class="nav-item ml-5 pl-5">
+              <a class="nav-link" href="{% url 'admhome' %}">Home</a>
+            </li>
+            <li class="nav-item pl-2 ">
+              <a class="nav-link" href="{% url 'admreg' %}">Registration Details</a>
+            </li>
+            <li class="nav-item pl-2">
+              <a class="nav-link" href="{% url 'admintimetable' %}">Add TimeTable</a>
+            </li>
+            <li class="nav-item pl-2">
+              <a class="nav-link" href="{% url 'admin_userpayment' %}">View Payment</a>
+            </li>
+            <li class="nav-item pl-2">
+              <a class="nav-link" href="{% url 'admin_payment' %}">Add Payment</a>
+            </li>
+            <li class="nav-item pl-2">
+              <a class="nav-link" href="">Logout</a>
+            </li>
 
           </ul>
 
@@ -103,7 +109,7 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card" style="height: 350px;">
                 <div class="card-body">
-                    <form method="post"  enctype="multipart/form-data"> {% csrf_token %} 
+                    <form method="post"  enctype="multipart/form-data" > {% csrf_token %} 
     
     
                         <div class="form-group row">

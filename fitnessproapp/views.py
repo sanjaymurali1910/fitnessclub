@@ -137,18 +137,38 @@ def onlin(request):
 	data={'online':online}
 	return render(request, 'online.html',data)
 
-def addbutonline(request):
-	button=onlinetraining.objects.get(email=em)
-	subject = 'Internship Python'
-	message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
-	recipient = em
-	send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
-	messages.success(request, 'Success!')
+def onedit(request,i_id):
+	oned=onlinetraining.objects.get(id=i_id)
+	return render(request,'online_edit.html',{'oned':oned})
+	
+def onlineedit(request,oned_id):
+	if request.method=='POST':
+		oneds=onlinetraining.objects.get(id=oned_id)
+		oneds.firstname=request.POST.get('first_name')
+		oneds.lastname=request.POST.get('last_name')
+		oneds.email=request.POST.get('email')
+		oneds.status=request.POST.get('status')
+		oneds.save()
+		subject = 'Internship Python'
+		message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+		recipient = oneds.email
+		send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+		messages.success(request, 'Success!') 
+		return redirect('onlin')
+	return render(request,'online_edit.html')	
+
 
 def offlin(request):
 	offline=offlinetraining.objects.all()
 	data={'offline':offline}
 	return render(request, 'offline.html',data)
+
+def offedit(request,i_id):
+	offd=offlinetraining.objects.get(id=i_id)
+
+	return render(request,'offline_edit.html',{'offd':offd})
+
+
 
 def staffd(request):
 	paydata=paymenttrainer.objects.all()
@@ -169,13 +189,26 @@ def admreg(request):
 	data={'det':det}
 	return render(request, 'adm_reg.html',data)
 
-def admregistration(request,p_id):
-	if request.method=='POST':
-		reg=user_registration.objects.get(id=p_id)
-		reg.save()
-		return redirect('adm_reg.html')
+def admregedit(request,i_id):
+	reg=user_registration.objects.get(id=i_id)
+	return render(request, 'adm_regedit.html',{'reg':reg})
 
-	return render(request,'adm_reg.html')
+def admregistration(request,reg_id):
+	if request.method=='POST':
+		regs=user_registration.objects.get(id=reg_id)
+		regs.firstname=request.POST.get('first_name')
+		regs.lastname=request.POST.get('last_name')
+		regs.email=request.POST.get('email')
+		regs.status=request.POST.get('status')
+		regs.save()
+		subject = 'Internship Python'
+		message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+		recipient = regs.email
+		send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+		messages.success(request, 'Success!') 
+		return redirect('admreg')
+
+	return render(request,'adm_regedit.html')
 
 
 def admintrainee(request):
