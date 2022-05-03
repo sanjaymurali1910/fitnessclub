@@ -1,6 +1,7 @@
 import os
 import random
 from django.shortcuts import render, redirect
+from fitnessproapp.models import *
 from datetime import datetime,date,timedelta
 from django.http import HttpResponse, HttpResponseRedirect
 from django. contrib import messages
@@ -10,7 +11,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate
 from django.db.models import Q
-from .models import *
 from fitnesspro.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 # Create your views here.
@@ -23,7 +23,7 @@ def login(request):
         user = authenticate(username=email,password=password)
         if user is not None:
             request.session['SAdm_id'] = user.id
-            return redirect( 'SuperAdmin_Dashboard')
+            return redirect( 'admhome')
 
         elif user_registration.objects.filter(email=request.POST['email'], password=request.POST['password'],status="trainer").exists():
                 
@@ -31,7 +31,7 @@ def login(request):
                 request.session['Tnr_id'] = member.id
                 mem=user_registration.objects.filter(id= member.id)
                 
-                return render(request,'Trainer_dashboard.html',{'mem':mem})
+                return render(request,'maintra.html',{'mem':mem})
 
         elif user_registration.objects.filter(email=request.POST['email'], password=request.POST['password'],status="trainee").exists():
                 
@@ -39,7 +39,7 @@ def login(request):
                 request.session['Tne_id'] = member.id
                 mem1=user_registration.objects.filter(id= member.id)
                 
-                return render(request,'Trainee_dashboard.html',{'mem1':mem1})
+                return render(request,'index.html',{'mem1':mem1})
         else:
             context = {'msg_error': 'Invalid data'}
             return render(request, 'login.html', context)
@@ -61,226 +61,484 @@ def signup(request):
 
 
 def index(request):
-	return render(request, 'index.html')
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		return render(request, 'index.html',{'mem1':mem1})
+	else:
+		return redirect('/')	
 
 def about(request):
-	return render(request, 'about-us.html')
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		return render(request, 'about-us.html',{'mem1':mem1})
+	else:
+		return redirect('/')		
 
 def classes(request):
-	return render(request, 'classes.html')
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		return render(request, 'classes.html',{'mem1':mem1})
+	else:
+		return redirect('/')		
 
 def train(request):
-	return render(request, 'Trainer.html')
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		tra=user_registration.objects.filter(status='trainer')
+		return render(request, 'Trainer.html',{'tra':tra,'mem1':mem1})
+	else:
+		return redirect('/')		
 
 def selecttrainer(request):
-	return render(request, 'selecttrainer.html')
-
-def startnow(request):
-	return render(request, 'startnow.html')
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		return render(request, 'selecttrainer.html',{'mem1':mem1})
+	else:
+		return redirect('/')		
 
 def shedule(request):
-	timetable=batch.objects.all()
-	data={'timetable':timetable}	
-	return render(request, 'timetable.html',data)
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		timetable=batch.objects.all()
+		data={'timetable':timetable,'mem1':mem1}
+		return render(request, 'timetable.html',data)
+	else:
+		return redirect('/')		
 
 def contact(request):
-	return render(request, 'contact.html')   
-
-def join(request):
-	return render(request, 'join.html')
-
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		return render(request, 'contact.html',{'mem1':mem1})   
+	else:
+		return redirect('/')		
 
 
 def userpaymentpage(request):
-	if request.method=='POST':
-		sn=request.POST['name']
-		n=request.POST['bankname']
-		an=request.POST['accnumber']
-		ifsc=request.POST['ifsccode']
-		am=request.POST['amount']
-		date = datetime.now()
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		if request.method=='POST':
+			sn=request.POST['name']
+			n=request.POST['bankname']
+			an=request.POST['accnumber']
+			ifsc=request.POST['ifsccode']
+			am=request.POST['amount']
+			date = datetime.now()
+			paymenttrainee.objects.create(sname=sn,name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+		return render(request, 'user_pay_page.html',{'mem1':mem1})
+	else:
+		return redirect('/')
 
-		paymenttrainee.objects.create(sname=sn,name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
-
-	return render(request, 'user_pay_page.html')
 
 
 def online_training(request):
-	if request.method=='POST':
-		fn=request.POST['fname']
-		ln=request.POST['lname']
-		e=request.POST['email']
-
-		onlinetraining.objects.create(firstname=fn,lastname=ln,email=e)
-        
-
-	return render(request, 'online_training.html')
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)
+		if request.method=='POST':
+			fn=request.POST['fname']
+			ln=request.POST['lname']
+			e=request.POST['email']
+			p=request.POST['plan']
+			onlinetraining.objects.create(firstname=fn,lastname=ln,email=e,plan=p)
+			return redirect('userpaymentpage')
+		return render(request, 'online_training.html',{'mem1':mem1})
+	else:
+		return redirect('/')		
 
 def offline_training(request):
-	if request.method=='POST':
-		fn=request.POST['fname']
-		ln=request.POST['lname']
-		e=request.POST['email']
+	if 'Tne_id' in request.session:
+		if request.session.has_key('Tne_id'):
+			Tne_id = request.session['Tne_id']
+		else:
+			return redirect('/')
+		mem1 = user_registration.objects.filter(id=Tne_id)	
+		if request.method=='POST':
+			fn=request.POST['fname']
+			ln=request.POST['lname']
+			e=request.POST['email']
+			p=request.POST['plan']
+			offlinetraining.objects.create(firstname=fn,lastname=ln,email=e,plan=p)
+			return redirect('userpaymentpage') 
+		return render(request, 'offline_training.html',{'mem1':mem1})
+	else:
+		return redirect('/')
 
-		offlinetraining.objects.create(firstname=fn,lastname=ln,email=e) 
+def Trainee_logout(request):
+    if 'Tne_id' in request.session:
+        request.session.flush()
+        return redirect('/')
+    else:
+        return redirect('/')		
 
-	return render(request, 'offline_training.html')
 
 
-
-
-def traindex(request):
-	return render(request, 'traind.html')
 
 def onlin(request):
-	online=onlinetraining.objects.all()
-	data={'online':online}
-	return render(request, 'online.html',data)
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		online=onlinetraining.objects.all()
+		data={'online':online,'mem':mem}
+		return render(request, 'online.html',data)
+	else:
+		return redirect('/')
+
+
 
 def onedit(request,i_id):
-	oned=onlinetraining.objects.get(id=i_id)
-	return render(request,'online_edit.html',{'oned':oned})
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		oned=onlinetraining.objects.get(id=i_id)
+		return render(request,'online_edit.html',{'oned':oned,'mem':mem})
+	else:
+		return redirect('/')	
 	
 def onlineedit(request,oned_id):
-	if request.method=='POST':
-		oneds=onlinetraining.objects.get(id=oned_id)
-		oneds.firstname=request.POST.get('first_name')
-		oneds.lastname=request.POST.get('last_name')
-		oneds.email=request.POST.get('email')
-		oneds.status=request.POST.get('status')
-		oneds.save()
-		subject = 'Internship Python'
-		message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
-		recipient = oneds.email
-		send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
-		messages.success(request, 'Success!') 
-		return redirect('onlin')
-	return render(request,'online_edit.html')	
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		if request.method=='POST':
+			oneds=onlinetraining.objects.get(id=oned_id)
+			oneds.firstname=request.POST.get('first_name')
+			oneds.lastname=request.POST.get('last_name')
+			oneds.email=request.POST.get('email')
+			oneds.status=request.POST.get('status')
+			oneds.save()
+			subject = 'Internship Python'
+			message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+			recipient = oneds.email
+			send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+			messages.success(request, 'Success!')
+			return redirect('onlin')
+		return render(request,'online_edit.html',{'mem':mem})
+	else:
+		return redirect('/')
 
 
 def offlin(request):
-	offline=offlinetraining.objects.all()
-	data={'offline':offline}
-	return render(request, 'offline.html',data)
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		offline=offlinetraining.objects.all()
+		data={'offline':offline,'mem':mem}
+		return render(request, 'offline.html',data)
+	else:
+		return redirect('/')		
 
 def offedit(request,i_id):
-	offd=offlinetraining.objects.get(id=i_id)
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		offd=offlinetraining.objects.get(id=i_id)
+		return render(request,'offline_edit.html',{'offd':offd,'mem':mem})
+	else:
+		return redirect('/')
 
-	return render(request,'offline_edit.html',{'offd':offd})
-
+def offlineedit(request,offd_id):
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		if request.method=='POST':
+			offds=offlinetraining.objects.get(id=offd_id)
+			offds.firstname=request.POST.get('first_name')
+			offds.lastname=request.POST.get('last_name')
+			offds.email=request.POST.get('email')
+			offds.status=request.POST.get('status')
+			offds.save()
+			subject = 'Internship Python'
+			message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+			recipient = offds.email
+			send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+			messages.success(request, 'Success!')
+			return redirect('offlin')
+		return render(request,'offline_edit.html',{'mem':mem})
+	else:
+		return redirect('/')	
 
 
 def staffd(request):
-	paydata=paymenttrainer.objects.all()
-	data={'paydata':paydata}	
-	return render(request, 'staffdetails.html',data)
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		paydata=paymenttrainer.objects.all()
+		data={'paydata':paydata,'mem':mem}
+		return render(request, 'staffdetails.html',data)
+	else:
+		return redirect('/')		
 
 def maint(request):
-	return render(request, 'maintra.html')
+	if 'Tnr_id' in request.session:
+		if request.session.has_key('Tnr_id'):
+			Tnr_id = request.session['Tnr_id']
+		else:
+			return redirect('/')
+		mem = user_registration.objects.filter(id=Tnr_id)
+		return render(request, 'maintra.html',{'mem':mem})
+	else:
+		return redirect('/')	
+
+def Trainer_logout(request):
+    if 'Tnr_id' in request.session:
+        request.session.flush()
+        return redirect('/')
+    else:
+        return redirect('/')	
+
+
+
+
 
 
 
 
 def admhome(request):
-	return render(request, 'adm_home.html')
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		return render(request, 'adm_home.html',{'users':users})
+	else:
+		return redirect('/')
 
 def admreg(request):
-	det=user_registration.objects.all()
-	data={'det':det}
-	return render(request, 'adm_reg.html',data)
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		det=user_registration.objects.all()
+		data={'det':det,'users':users}
+		return render(request, 'adm_reg.html',data)
+	else:
+		return redirect('/')		
 
 def admregedit(request,i_id):
-	reg=user_registration.objects.get(id=i_id)
-	return render(request, 'adm_regedit.html',{'reg':reg})
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		reg=user_registration.objects.get(id=i_id)
+		return render(request, 'adm_regedit.html',{'reg':reg,'users':users})
+	else:
+		return redirect('/')		
 
 def admregistration(request,reg_id):
-	if request.method=='POST':
-		regs=user_registration.objects.get(id=reg_id)
-		regs.firstname=request.POST.get('first_name')
-		regs.lastname=request.POST.get('last_name')
-		regs.email=request.POST.get('email')
-		regs.status=request.POST.get('status')
-		regs.save()
-		subject = 'Internship Python'
-		message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
-		recipient = regs.email
-		send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
-		messages.success(request, 'Success!') 
-		return redirect('admreg')
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		if request.method=='POST':
+			regs=user_registration.objects.get(id=reg_id)
+			regs.firstname=request.POST.get('first_name')
+			regs.lastname=request.POST.get('last_name')
+			regs.email=request.POST.get('email')
+			regs.status=request.POST.get('status')
+			regs.save()
+			subject = 'Internship Python'
+			message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+			recipient = regs.email
+			send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
+			messages.success(request, 'Success!')
+			return redirect('admreg')
+		return render(request,'adm_regedit.html',{'users':users})
+	else:
+		return redirect('/')
 
-	return render(request,'adm_regedit.html')
-
-
-def admintrainee(request):
-	return render(request, 'adm_trainee.html')
-
-def admintrainer(request):
-	return render(request, 'adm_trainer.html')
 
 def admintimetable(request):
-	if request.method=='POST':
-		d=request.POST['day']
-		ft=request.POST['fromtime']
-		tt=request.POST['totime']
-		w=request.POST['workout']
-		wc=request.POST['workcate']
-
-		batch.objects.create(day=d,fromtime=ft,totime=tt,workout=w,workoutcate=wc)
-	return render(request, 'adm_timetable.html')
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		if request.method=='POST':
+			d=request.POST['day']
+			ft=request.POST['fromtime']
+			tt=request.POST['totime']
+			w=request.POST['workout']
+			wc=request.POST['workcate']
+			batch.objects.create(day=d,fromtime=ft,totime=tt,workout=w,workoutcate=wc)
+		return render(request, 'adm_timetable.html',{'users':users})
+	else:
+		return redirect('/')		
 
 def admin_view_timetable(request):
-	timetable=batch.objects.all()
-	data={'timetable':timetable}
-
-	return render(request, 'adm_view_timetable.html',data)
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		timetable=batch.objects.all()
+		data={'timetable':timetable,'users':users}
+		return render(request, 'adm_view_timetable.html',data)
+	else:
+		return redirect('/')
 
 def admin_edit_timetable(request,i_id):
-	timet=batch.objects.get(id=i_id)
-	return render(request, 'adm_edit_timetable.html',{'timet':timet})
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		timet=batch.objects.get(id=i_id)
+		return render(request, 'adm_edit_timetable.html',{'timet':timet,'users':users})
+	else:
+		return redirect('/')		
 
 def admin_editpage(request,timet_id):
-	if request.method=='POST':
-		table = batch.objects.get(id=timet_id)
-		table.day=request.POST.get('day')
-		table.fromtime=request.POST.get('fromtime')
-		table.totime=request.POST.get('totime')
-		table.workout=request.POST.get('workout')
-		table.workoutcate=request.POST.get('workcate')
-		table.save()
-		return redirect('admin_view_timetable')
-
- 
-	return render(request, 'adm_edit_timetable.html')
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		if request.method=='POST':
+			table = batch.objects.get(id=timet_id)
+			table.day=request.POST.get('day')
+			table.fromtime=request.POST.get('fromtime')
+			table.totime=request.POST.get('totime')
+			table.workout=request.POST.get('workout')
+			table.workoutcate=request.POST.get('workcate')
+			table.save()
+			return redirect('admin_view_timetable')
+		return render(request, 'adm_edit_timetable.html',{'users':users})
+	else:
+		return redirect('/')
 
 
 def delete_batch(request,p_id):
-    products=batch.objects.get(id=p_id)
-    products.delete()
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+          SAdm_id = request.session['SAdm_id']
+        else:
+          return redirect('/')    
+        users = User.objects.filter(id=SAdm_id)	
+        products=batch.objects.get(id=p_id)
+        products.delete()
 
-    return redirect('admin_view_timetable')
+        return redirect('admin_view_timetable',{'users':users})
+    else:
+        return redirect('/')
 
 def admin_userpayment(request):
-	paydata=paymenttrainee.objects.all()
-	data={'paydata':paydata}
-	return render(request, 'adm_viewpayment.html',data)
-
-
-def admin_view_userpay(request):
-	return render(request, 'adm_view_userpayment.html')
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		paydata=paymenttrainee.objects.all()
+		data={'paydata':paydata,'users':users}
+		return render(request, 'adm_viewpayment.html',data)
+	else:
+		return redirect('/')
 
 def admin_payment(request):
-	paydata=paymenttrainer.objects.all()
-	data={'paydata':paydata}	
-	return render(request, 'adm_payment.html',data)
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		paydata=paymenttrainer.objects.all()
+		data={'paydata':paydata,'users':users}
+		return render(request, 'adm_payment.html',data)
+	else:
+		return redirect('/')		
 
 def admin_pay_page(request):
-	if request.method=='POST':
-		n=request.POST['bankname']
-		an=request.POST['accnumber']
-		ifsc=request.POST['ifsccode']
-		am=request.POST['amount']
-		date = datetime.now()
+	if 'SAdm_id' in request.session:
+		if request.session.has_key('SAdm_id'):
+			SAdm_id = request.session['SAdm_id']
+		else:
+			return redirect('/')
+		users = User.objects.filter(id=SAdm_id)
+		if request.method=='POST':
+			n=request.POST['bankname']
+			an=request.POST['accnumber']
+			ifsc=request.POST['ifsccode']
+			am=request.POST['amount']
+			date = datetime.now()
+			paymenttrainer.objects.create(name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+		return render(request, 'adm_pay_page.html',{'users':users})
+	else:
+		return redirect('/')		 
 
-		paymenttrainer.objects.create(name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
-
-	return render(request, 'adm_pay_page.html')
+def SuperAdmin_logout(request):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        else:
+            return redirect('/')
+        users = User.objects.filter(id=SAdm_id)
+        request.session.flush()
+        return redirect("/")
+    else:
+        return redirect('/')

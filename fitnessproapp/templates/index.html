@@ -60,7 +60,7 @@
                 <li><a href="{% url 'contact' %}">Contact</a></li>
                 
                 <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -95,7 +95,7 @@
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                             
                             <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
-                            <li><a href="">Logout</a></li>
+                            <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
                                 <!-- <ul class="dropdown">
                                     <li><a href="#">Admin</a></li>
                                     <li><a href="{% url 'login' %}">User</a></li>
@@ -143,12 +143,12 @@
                         <div class="col-lg-6 offset-lg-6">
                             <div class="hi-text">
                                 <span style="color:white; font-size: 20px; font-family: Arial; padding-right: 50%;">
-                                    FITNESS FOCUSE
+                                    Shape your body
                                 </span>
                                 <h1 style="color: #FFFFFF; padding-right: 10%;">BE
                                     <strong style="color: #f36100;" style="font: 18px Muli, sans-serif;" style="margin: 0px opx 18px;">STRONG</strong> 
                                 TRAIN HARD</h1>
-                                <a href="{% url 'login' %}" class="primary-btn">JOIN NOW</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -165,12 +165,12 @@
                         <div class="col-lg-6 offset-lg-6">
                             <div class="hi-text">
                                 <span style="color:white; font-size: 20px; font-family: Arial; padding-right: 50%;">
-                                    FITNESS FOCUSE
+                                    Shape your body
                                 </span>
                                 <h1 style="color: #FFFFFF; padding-right: 10%;">BE
                                     <strong style="color: #f36100;" style="font: 18px Muli, sans-serif;" style="margin: 0px opx 18px;">STRONG</strong> 
                                 TRAIN HARD</h1>
-                                <a href="{% url 'login' %}" class="primary-btn">JOIN NOW</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -343,7 +343,7 @@
                         <div class="bs-text">
                             <h2>registration now to get more deals</h2>
                             <div class="bt-tips">Where health, beauty and fitness meet.</div>
-                            <a href="#" class="primary-btn  btn-normal">Appointment</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -351,174 +351,13 @@
      </section> 
     <!-- Banner Section End -->
 
-    <!-- Pricing Section Begin -->
-    <section class="pricing-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Our Plan</span>
-                        <h2>Choose your pricing plan</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-8">
-                    <div class="ps-item">
-                        <h3>Class drop-in</h3>
-                        <div class="pi-price">
-                            <h2>Rs.500</h2>
-                            <span>SINGLE CLASS</span>
-                        </div>
-                        <ul>
-                            <li>Free riding</li>
-                            <li>Unlimited equipments</li>
-                            <li>Personal trainer</li>
-                            <li>Weight losing classes</li>
-                            <li>Month to mouth</li>
-                            <li>No time restriction</li>
-                        </ul>
-                        <a href="{% url 'login' %}" class="primary-btn pricing-btn">Start now</a>
-                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
-                     </div> 
-                </div> 
-                <div class="col-lg-4 col-md-8">
-                    <div class="ps-item">
-                        <h3>12 Month unlimited</h3>
-                        <div class="pi-price">
-                            <h2>Rs.2000</h2>
-                            <span>SINGLE CLASS</span>
-                        </div>
-                        <ul>
-                            <li>Free riding</li>
-                            <li>Unlimited equipments</li>
-                            <li>Personal trainer</li>
-                            <li>Weight losing classes</li>
-                            <li>Month to mouth</li>
-                            <li>No time restriction</li>
-                        </ul>
-                        <a href="{% url 'login' %}" class="primary-btn pricing-btn">Start now</a>
-                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
-                    </div> 
-                </div>
-                <div class="col-lg-4 col-md-8">
-                    <div class="ps-item">
-                        <h3>6 Month unlimited</h3>
-                        <div class="pi-price">
-                            <h2>Rs.1500</h2>
-                            <span>SINGLE CLASS</span>
-                        </div>
-                        <ul>
-                            <li>Free riding</li>
-                            <li>Unlimited equipments</li>
-                            <li>Personal trainer</li>
-                            <li>Weight losing classes</li>
-                            <li>Month to mouth</li>
-                            <li>No time restriction</li>
-                        </ul>
-                        <a href="{% url 'login' %}" class="primary-btn pricing-btn">Start now</a>
-                         <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Pricing Section End -->
 
     <!-- Gallery Section Begin -->
-    <div class="gallery-section">
-        <div class="gallery">
-            <div class="grid-sizer"></div>
-            <div class="gs-item grid-wide set-bg" data-setbg="img/gallery/gallery-1.jpg">
-                <a href="img/gallery/gallery-1.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
-                <a href="img/gallery/gallery-2.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
-                <a href="img/gallery/gallery-3.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
-                <a href="img/gallery/gallery-4.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-5.jpg">
-                <a href="img/gallery/gallery-5.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item grid-wide set-bg" data-setbg="img/gallery/gallery-6.jpg">
-                <a href="img/gallery/gallery-6.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-        </div>
-    </div>
+
     <!-- Gallery Section End -->
 
     <!-- Team Section Begin -->
-    <section class="team-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="team-title">
-                        <div class="section-title">
-                            <span>Our Team</span>
-                            <h2>TRAIN WITH EXPERTS</h2>
-                        </div>
-                        <a href="#" class="primary-btn btn-normal appoinment-btn">appointment</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="ts-slider owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- Team Section End -->
 
     <!-- Get In Touch Section Begin -->

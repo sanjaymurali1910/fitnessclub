@@ -81,7 +81,7 @@
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                             
                             <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
-                            <li><a href="">Logout</a></li>
+                            <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
                     </nav>
                 </div>
                 <!-- <div class="col-lg-3">
@@ -138,10 +138,11 @@
                 </div>
             </div>    
             <div class="row">
+                {% for i in tra %}
                 <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" style="background-image: url({% static '/img/team/team-1.jpg' %});">
+                <div class="ts-item set-bg"><img  src="{{ i.photo.url }}" style="width: 360px; height: 450px;">
                         <div class="ts_text">
-                            <h4>Angelina Max</h4>
+                            <h4>{{i.firstname}} {{i.lastname}}</h4>
                             <span>Gym Trainer</span>
                             <div class="tt_social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -153,81 +154,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" style="background-image: url({% static '/img/team/team-2.jpg' %});">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" style="background-image: url({% static '/img/team/team-3.jpg' %});">
-                        <div class="ts_text">
-                            <h4>Robert Cage</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" style="background-image: url({% static '/img/team/team-4.jpg' %});">
-                        <div class="ts_text">
-                            <h4>Keaf Shen</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" style="background-image: url({% static '/img/team/team-5.jpg' %});">
-                        <div class="ts_text">
-                            <h4>Kimberly Stone</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" style="background-image: url({% static '/img/team/team-6.jpg' %});">
-                        <div class="ts_text">
-                            <h4>Shea D.lee</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {%endfor %}
+
             </div>
         </div>
     </section>

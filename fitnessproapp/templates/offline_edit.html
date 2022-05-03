@@ -86,7 +86,7 @@
                 <a class="nav-link" href="{% url 'staffd' %}">Payment History</a>
               </li>
               <li class="nav-item pl-4">
-               <a class="nav-link" href="">Logout</a>
+                <a class="nav-link" href="{% url 'Trainer_logout' %}">Logout</a>
              </li>
 
 
@@ -105,7 +105,7 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card" style="height: 350px;">
                 <div class="card-body">
-                    <form method="post" action=""  enctype="multipart/form-data"> {% csrf_token %} 
+                    <form method="post" action="{% url 'offlineedit' offd.id %}"  enctype="multipart/form-data"> {% csrf_token %} 
     
     
                       <div class="form-group row">
@@ -113,7 +113,7 @@
                             First Name
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" name="first_name" class="form-control" id="exampleInputUsername2" value="{{ reg.firstname }}"  required>
+                            <input type="text" name="first_name" class="form-control" id="exampleInputUsername2" value="{{ offd.firstname }}"  required>
                         </div>
                     </div>
 
@@ -122,7 +122,7 @@
                             Last Name
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" name="last_name" class="form-control" id="exampleInputUsername2" value="{{ reg.lastname }}"  required>
+                            <input type="text" name="last_name" class="form-control" id="exampleInputUsername2" value="{{ offd.lastname }}"  required>
                         </div>
                     </div>
     
@@ -131,7 +131,7 @@
                               Email
                           </label>
                           <div class="col-sm-9">
-                            <input type="email" name="email" class="form-control" id="exampleInputUsername2" value="{{ reg.email }}"  required>
+                            <input type="email" name="email" class="form-control" id="exampleInputUsername2" value="{{ offd.email }}"  required>
                           </div>
                       </div>
 

@@ -49,7 +49,7 @@
                 <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
                 
                 <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
                 </li>
             </ul>
         </nav>
@@ -78,14 +78,14 @@
                     <nav class="nav-menu">
                         <ul>
                             <li><a href="{% url 'index' %}">Home</a></li>
-                            <li class="active"><a href="{% url 'about' %}">About Us</a></li>
+                            <li ><a href="{% url 'about' %}">About Us</a></li>
                             <li><a href="{% url 'classes' %}">Classes</a></li>
                             <li><a href="{% url 'train' %}">Trainers</a></li>
                             <li><a href="{% url 'shedule' %}">Schedules</a></li>
                             <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
                             
                             <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
-                            <li><a href="">Logout</a></li>
+                            <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
                             </li>
                         </ul>
                     </nav>
@@ -156,18 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="leave-comment">
-                        <form action="contactpage" method="post">
-                            {% csrf_token %}
-                            <input type="text" placeholder="Name" name="Name">
-                            <input type="email" placeholder="Email" name="Email">
-                            <input type="text" placeholder="Subject" name="Subject">
-                            <textarea placeholder="Comment" name="Comment"></textarea>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-                </div>
+
             </div>
             <div class="map">
                 <iframe
