@@ -7,7 +7,7 @@
     <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym | Template</title>
+    <title>TRAIN WITH US</title>
     {% load static %}
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="shortcut icon" href="{% static 'gym.png' %}" />
 </head>
 
 <body>
@@ -31,7 +32,6 @@
     </div> -->
 
     <!-- Offcanvas Menu Section Begin -->
-   <!--  <img src="{% static 'img/breadcrumb-bg.jpg'%}"> -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="canvas-close">
@@ -40,26 +40,23 @@
         <div class="canvas-search search-switch">
             <i class="fa fa-search"></i>
         </div>
-        <nav class="canvas-menu mobile-menu">
+        <!-- <nav class="canvas-menu mobile-menu">
             <ul>
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'classes' %}">Classes</a></li>
                 <li><a href="{% url 'train' %}">Trainers</a></li>
-                <li class="active"><a href="{% url 'shedule' %}">Schedules</a></li>
+                <li><a href="{% url 'shedule' %}">Schedules</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
-                
-                <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
-                <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
+                <li><a href="{% url 'login' %}">join</a></li>
+        </nav> -->
+        <!-- <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-youtube-play"></i></a>
             <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
+        </div> -->
     </div>
     <!-- Offcanvas Menu Section End -->
 
@@ -80,17 +77,16 @@
                             <li><a href="{% url 'index' %}">Home</a></li>
                             <li ><a href="{% url 'about' %}">About Us</a></li>
                             <li><a href="{% url 'classes' %}">Classes</a></li>
-                            <li><a href="{% url 'train' %}">Trainers</a></li>
+                            <li ><a href="{% url 'train' %}">Trainers</a></li>
                             <li class="active"><a href="{% url 'shedule' %}">Schedules</a></li>
-                            <li ><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
                             
                             <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
                             <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
-                        </ul>
                     </nav>
                 </div>
-                <div class="col-lg-3">
-                    <!-- <div class="top-option">
+                <!-- <div class="col-lg-3">
+                    <div class="top-option">
                         <div class="to-search search-switch">
                             <i class="fa fa-search"></i>
                         </div>
@@ -100,8 +96,8 @@
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                         </div>
-                    </div> -->
-                </div>
+                    </div>
+                </div> -->
             </div>
             <div class="canvas-open">
                 <i class="fa fa-bars"></i>
@@ -111,12 +107,12 @@
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" style="background-color:rgb(60, 20, 20) ;">
+    <section class="breadcrumb-section set-bg" style="background-image: url({% static '/image/timetable.jpg' %});"">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>Timetable</h2>
+                        <h2>TIME TABLE</h2>
                         <div class="bt-option">
                             <a href="{% url 'index' %}">Home</a>
                             <span>Services</span>
@@ -143,7 +139,7 @@
                         <ul>
                             <li class="active" data-tsfilter="all">All event</li>
                             <li data-tsfilter="fitness">Fitness tips</li>
-                            <li data-tsfilter="{{i.workoutcate}}">Motivation</li>
+                            <li data-tsfilter="Motivation">Motivation</li>
                             <li data-tsfilter="workout">Workout</li>
                         </ul>
                     </div>
@@ -170,10 +166,10 @@
                                 {% for i in timetable %}
                                 <tr> 
                                     
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta={{i.workoutcate}} ><h5>{{i.day}}</h5></td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta={{i.workoutcate}}><h5>{{i.fromtime}}</h5></td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta={{i.workoutcate}} ><h5>{{i.totime}}</h5></td>
-                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta={{i.workoutcate}} ><h5>{{i.workout}}</h5> </td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout"><h5>{{i.day}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout"><h5>{{i.fromtime}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.totime}}</h5></td>
+                                    <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.workout}}</h5> </td>
                                     <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" ><h5>{{i.workoutcate}}</h5></td>
                                     
                                 </tr>
@@ -305,14 +301,6 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/jquery.barfiller.js' %}"></script>
-    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
@@ -321,7 +309,7 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
+    
 
 
 </body>
