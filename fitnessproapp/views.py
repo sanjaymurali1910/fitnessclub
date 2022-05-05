@@ -15,6 +15,10 @@ from fitnesspro.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 # Create your views here.
 
+
+
+# login page
+
 def login(request):
 
     if request.method == 'POST':
@@ -47,6 +51,8 @@ def login(request):
 
 
 
+# signup page
+
 def signup(request):
     if request.method == 'POST':
         acc = user_registration()
@@ -60,6 +66,12 @@ def signup(request):
     return render(request,'signup.html')
 
 
+
+
+# user side functions(trainee)
+
+
+
 def index(request):
 	if 'Tne_id' in request.session:
 		if request.session.has_key('Tne_id'):
@@ -70,6 +82,9 @@ def index(request):
 		return render(request, 'index.html',{'mem1':mem1})
 	else:
 		return redirect('/')	
+
+
+
 
 def about(request):
 	if 'Tne_id' in request.session:
@@ -82,6 +97,9 @@ def about(request):
 	else:
 		return redirect('/')		
 
+
+
+
 def classes(request):
 	if 'Tne_id' in request.session:
 		if request.session.has_key('Tne_id'):
@@ -92,6 +110,9 @@ def classes(request):
 		return render(request, 'classes.html',{'mem1':mem1})
 	else:
 		return redirect('/')		
+
+
+
 
 def train(request):
 	if 'Tne_id' in request.session:
@@ -105,6 +126,9 @@ def train(request):
 	else:
 		return redirect('/')		
 
+
+
+
 def selecttrainer(request):
 	if 'Tne_id' in request.session:
 		if request.session.has_key('Tne_id'):
@@ -115,6 +139,9 @@ def selecttrainer(request):
 		return render(request, 'selecttrainer.html',{'mem1':mem1})
 	else:
 		return redirect('/')		
+
+
+
 
 def shedule(request):
 	if 'Tne_id' in request.session:
@@ -129,6 +156,9 @@ def shedule(request):
 	else:
 		return redirect('/')		
 
+
+
+
 def contact(request):
 	if 'Tne_id' in request.session:
 		if request.session.has_key('Tne_id'):
@@ -139,6 +169,9 @@ def contact(request):
 		return render(request, 'contact.html',{'mem1':mem1})   
 	else:
 		return redirect('/')		
+
+
+
 
 
 def userpaymentpage(request):
@@ -162,6 +195,8 @@ def userpaymentpage(request):
 
 
 
+
+
 def online_training(request):
 	if 'Tne_id' in request.session:
 		if request.session.has_key('Tne_id'):
@@ -179,6 +214,10 @@ def online_training(request):
 		return render(request, 'online_training.html',{'mem1':mem1})
 	else:
 		return redirect('/')		
+
+
+
+
 
 def offline_training(request):
 	if 'Tne_id' in request.session:
@@ -198,6 +237,10 @@ def offline_training(request):
 	else:
 		return redirect('/')
 
+
+
+
+
 def Trainee_logout(request):
     if 'Tne_id' in request.session:
         request.session.flush()
@@ -205,6 +248,11 @@ def Trainee_logout(request):
     else:
         return redirect('/')		
 
+# user side end
+  
+
+
+# trainer side functions
 
 
 
@@ -223,6 +271,8 @@ def onlin(request):
 
 
 
+
+
 def onedit(request,i_id):
 	if 'Tnr_id' in request.session:
 		if request.session.has_key('Tnr_id'):
@@ -234,7 +284,11 @@ def onedit(request,i_id):
 		return render(request,'online_edit.html',{'oned':oned,'mem':mem})
 	else:
 		return redirect('/')	
-	
+
+
+
+
+
 def onlineedit(request,oned_id):
 	if 'Tnr_id' in request.session:
 		if request.session.has_key('Tnr_id'):
@@ -260,6 +314,9 @@ def onlineedit(request,oned_id):
 		return redirect('/')
 
 
+
+
+
 def offlin(request):
 	if 'Tnr_id' in request.session:
 		if request.session.has_key('Tnr_id'):
@@ -273,6 +330,10 @@ def offlin(request):
 	else:
 		return redirect('/')		
 
+
+
+
+
 def offedit(request,i_id):
 	if 'Tnr_id' in request.session:
 		if request.session.has_key('Tnr_id'):
@@ -284,6 +345,10 @@ def offedit(request,i_id):
 		return render(request,'offline_edit.html',{'offd':offd,'mem':mem})
 	else:
 		return redirect('/')
+
+
+
+
 
 def offlineedit(request,offd_id):
 	if 'Tnr_id' in request.session:
@@ -310,6 +375,10 @@ def offlineedit(request,offd_id):
 		return redirect('/')	
 
 
+
+
+
+
 def staffd(request):
 	if 'Tnr_id' in request.session:
 		if request.session.has_key('Tnr_id'):
@@ -323,6 +392,10 @@ def staffd(request):
 	else:
 		return redirect('/')		
 
+
+
+
+
 def maint(request):
 	if 'Tnr_id' in request.session:
 		if request.session.has_key('Tnr_id'):
@@ -334,6 +407,9 @@ def maint(request):
 	else:
 		return redirect('/')	
 
+
+
+
 def Trainer_logout(request):
     if 'Tnr_id' in request.session:
         request.session.flush()
@@ -342,9 +418,11 @@ def Trainer_logout(request):
         return redirect('/')	
 
 
+# trainer side end
 
 
 
+#admin side functions
 
 
 
@@ -359,6 +437,10 @@ def admhome(request):
 	else:
 		return redirect('/')
 
+
+
+
+
 def admreg(request):
 	if 'SAdm_id' in request.session:
 		if request.session.has_key('SAdm_id'):
@@ -372,6 +454,10 @@ def admreg(request):
 	else:
 		return redirect('/')		
 
+
+
+
+
 def admregedit(request,i_id):
 	if 'SAdm_id' in request.session:
 		if request.session.has_key('SAdm_id'):
@@ -383,6 +469,11 @@ def admregedit(request,i_id):
 		return render(request, 'adm_regedit.html',{'reg':reg,'users':users})
 	else:
 		return redirect('/')		
+
+
+
+
+
 
 def admregistration(request,reg_id):
 	if 'SAdm_id' in request.session:
@@ -409,6 +500,10 @@ def admregistration(request,reg_id):
 		return redirect('/')
 
 
+
+
+
+
 def admintimetable(request):
 	if 'SAdm_id' in request.session:
 		if request.session.has_key('SAdm_id'):
@@ -427,6 +522,11 @@ def admintimetable(request):
 	else:
 		return redirect('/')		
 
+
+
+
+
+
 def admin_view_timetable(request):
 	if 'SAdm_id' in request.session:
 		if request.session.has_key('SAdm_id'):
@@ -440,6 +540,11 @@ def admin_view_timetable(request):
 	else:
 		return redirect('/')
 
+
+
+
+
+
 def admin_edit_timetable(request,i_id):
 	if 'SAdm_id' in request.session:
 		if request.session.has_key('SAdm_id'):
@@ -451,6 +556,10 @@ def admin_edit_timetable(request,i_id):
 		return render(request, 'adm_edit_timetable.html',{'timet':timet,'users':users})
 	else:
 		return redirect('/')		
+
+
+
+
 
 def admin_editpage(request,timet_id):
 	if 'SAdm_id' in request.session:
@@ -473,6 +582,10 @@ def admin_editpage(request,timet_id):
 		return redirect('/')
 
 
+
+
+
+
 def delete_batch(request,p_id):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
@@ -483,9 +596,14 @@ def delete_batch(request,p_id):
         products=batch.objects.get(id=p_id)
         products.delete()
 
-        return redirect('admin_view_timetable',{'users':users})
+        return redirect('admhome',{'users':users})
     else:
         return redirect('/')
+
+
+
+
+
 
 def admin_userpayment(request):
 	if 'SAdm_id' in request.session:
@@ -500,6 +618,12 @@ def admin_userpayment(request):
 	else:
 		return redirect('/')
 
+
+
+
+
+
+
 def admin_payment(request):
 	if 'SAdm_id' in request.session:
 		if request.session.has_key('SAdm_id'):
@@ -512,6 +636,13 @@ def admin_payment(request):
 		return render(request, 'adm_payment.html',data)
 	else:
 		return redirect('/')		
+
+
+
+
+
+
+
 
 def admin_pay_page(request):
 	if 'SAdm_id' in request.session:
@@ -530,6 +661,11 @@ def admin_pay_page(request):
 		return render(request, 'adm_pay_page.html',{'users':users})
 	else:
 		return redirect('/')		 
+
+
+
+
+
 
 def SuperAdmin_logout(request):
     if 'SAdm_id' in request.session:

@@ -122,7 +122,7 @@
 						  <tbody>
 							{% for i in online %}
 						    <tr>
-						      <th scope="row">{{i.id}}</th>
+						      <th scope="row">{{ forloop.counter }}</th>
 						      <td>{{i.firstname}}</td>
 						      <td>{{i.lastname}}</td>
 						      <td>{{i.email}}</td>

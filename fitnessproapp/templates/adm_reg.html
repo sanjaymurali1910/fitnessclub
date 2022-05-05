@@ -128,7 +128,7 @@
                             <tbody id="myTable">
                                 {% for i in det %}
                                 <tr>
-                                    <td>{{i.id}}</td>
+                                    <td>{{ forloop.counter }}</td>
                                     <td>{{i.firstname}}</td>
                                     <td>{{i.lastname}}</td>
                                     <td>{{i.email}}</td>
