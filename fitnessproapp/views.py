@@ -51,6 +51,37 @@ def login(request):
 
 
 
+
+
+#  Forgot password
+
+
+def Forgot_password(request):
+    if request.method == "POST":
+        email_id = request.POST.get('email')
+        access_user_data = user_registration.objects.filter(email=email_id).exists()
+        if access_user_data:
+            _user = user_registration.objects.filter(email=email_id)
+            password = random.SystemRandom().randint(100000, 999999)
+            print(password)
+            _user.update(password = password)
+            subject =' your authentication data updated'
+            message = 'Password Reset Successfully\n\nYour login details are below\n\nUsername : ' + str(email_id) + '\n\nPassword : ' + str(password) + \
+                '\n\nYou can login this details\n\nNote: This is a system generated email, do not reply to this email id'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [email_id, ]
+            send_mail(subject, message, email_from,
+                      recipient_list, fail_silently=True)
+            #_user.save()
+            msg_success = "Password Reset successfully check your mail new password"
+            return render(request, 'Forgot_password.html', {'msg_success': msg_success})
+        else:
+            msg_error = "This email does not exist  "
+            return render(request, 'Forgot_password.html', {'msg_error': msg_error})
+    return render(request,'Forgot_password.html')
+
+
+
 # signup page
 
 def signup(request):
@@ -189,6 +220,8 @@ def userpaymentpage(request):
 			am=request.POST['amount']
 			date = datetime.now()
 			paymenttrainee.objects.create(sname=sn,name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+			msg_success = "Payment successfully Completed"
+			return render(request, 'user_pay_page.html', {'msg_success': msg_success})
 		return render(request, 'user_pay_page.html',{'mem1':mem1})
 	else:
 		return redirect('/')
@@ -303,12 +336,13 @@ def onlineedit(request,oned_id):
 			oneds.email=request.POST.get('email')
 			oneds.status=request.POST.get('status')
 			oneds.save()
-			subject = 'Internship Python'
-			message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+			subject = 'FitnrssClub Joining Details'
+			message = 'Dear Friend,\nWe are pleased to inform that your request to join our online class is approved\nYour online class link is here:https://meet.google.com/rnz-hvbo-eeb'
 			recipient = oneds.email
 			send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
 			messages.success(request, 'Success!')
 			return redirect('onlin')
+
 		return render(request,'online_edit.html',{'mem':mem})
 	else:
 		return redirect('/')
@@ -364,12 +398,13 @@ def offlineedit(request,offd_id):
 			offds.email=request.POST.get('email')
 			offds.status=request.POST.get('status')
 			offds.save()
-			subject = 'Internship Python'
-			message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+			subject = 'FitnrssClub Joining Details'
+			message = 'dear Friend,\nWe are pleased to inform that your request to join our online class is approved'
 			recipient = offds.email
 			send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
 			messages.success(request, 'Success!')
 			return redirect('offlin')
+
 		return render(request,'offline_edit.html',{'mem':mem})
 	else:
 		return redirect('/')	
@@ -489,12 +524,13 @@ def admregistration(request,reg_id):
 			regs.email=request.POST.get('email')
 			regs.status=request.POST.get('status')
 			regs.save()
-			subject = 'Internship Python'
-			message = 'dear Candidate,\nWe are pleased to inform that you are selected our 6 months free inernship program..'
+			subject = 'FitnessClub Welcome Message'
+			message = 'dear Friend,\nWe welcome you to Fitnessclub'
 			recipient = regs.email
 			send_mail(subject,message, settings.EMAIL_HOST_USER, [recipient], fail_silently=False)
 			messages.success(request, 'Success!')
 			return redirect('admreg')
+
 		return render(request,'adm_regedit.html',{'users':users})
 	else:
 		return redirect('/')
@@ -587,18 +623,10 @@ def admin_editpage(request,timet_id):
 
 
 def delete_batch(request,p_id):
-    if 'SAdm_id' in request.session:
-        if request.session.has_key('SAdm_id'):
-          SAdm_id = request.session['SAdm_id']
-        else:
-          return redirect('/')    
-        users = User.objects.filter(id=SAdm_id)	
-        products=batch.objects.get(id=p_id)
-        products.delete()
+	products=batch.objects.get(id=p_id)
+	products.delete()
+	return redirect('admin_view_timetable')
 
-        return redirect('admhome',{'users':users})
-    else:
-        return redirect('/')
 
 
 
@@ -658,6 +686,8 @@ def admin_pay_page(request):
 			am=request.POST['amount']
 			date = datetime.now()
 			paymenttrainer.objects.create(name=n,accountnumber=an,ifsc=ifsc,payment=am,date=date)
+			msg_success = "Payment successfully Completed"
+			return render(request, 'adm_pay_page.html', {'msg_success': msg_success})
 		return render(request, 'adm_pay_page.html',{'users':users})
 	else:
 		return redirect('/')		 

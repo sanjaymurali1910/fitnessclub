@@ -26,6 +26,7 @@ urlpatterns = [
     re_path('admin/', admin.site.urls),
 
     re_path(r'^$', views.login, name='login'),
+    re_path(r'^Forgot_password$',views.Forgot_password, name='Forgot_password'),
     re_path(r'^index/$', views.index, name='index'),
     re_path(r'^about/$', views.about, name='about'),
     re_path(r'^classes/$', views.classes, name='classes'),
