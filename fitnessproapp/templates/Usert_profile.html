@@ -52,12 +52,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link rel="shortcut icon" href="{% static 'gym.png' %}" />
-  <style>
-    body{
-			background-image: url({% static '/img/breadcrumb-bg.jpg' %});
 
-		}
-  </style>
+
 </head>
 <body>
 
@@ -72,7 +68,7 @@
         </button>
       
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul class="navbar-nav justify-content-right" >
+          <ul class="navbar-nav " style="float: right;" >
 
             <li class="nav-item ml-5 pl-5 ">
                 <a class="nav-link" href="{% url 'maint' %}">Home</a>
@@ -90,7 +86,7 @@
                 <a class="nav-link" href="{% url 'Usert_profile' %}">Settings</a>
               </li>
               <li class="nav-item pl-2">
-                <a class="nav-link" href="{% url 'Trainer_logout' %}">Logout</a>
+               <a class="nav-link" href="{% url 'Trainer_logout' %}">Logout</a>
              </li>
 
 
@@ -98,65 +94,40 @@
 
         </div>
       </nav><br><br><br>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section" style="color: azure;">ONLINE CLASS DETAILS</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-						<table class="table table-bordered table-dark table-hover">
-						  <thead>
-						    <tr>
-						      <th>SI.No</th>
-						      <th>First Name</th>
-						      <!-- <th>Last Name</th>
-						      <th></th> -->
-                              <th>Last Name</th>
-						      <th>Email</th>
-                  <th>Plan</th>
-                  <th>Status</th>
-						      <th>Action</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-							{% for i in online %}
-						    <tr>
-						      <th scope="row">{{ forloop.counter }}</th>
-						      <td>{{i.firstname}}</td>
-						      <td>{{i.lastname}}</td>
-						      <td>{{i.email}}</td>
-                  <td>{{i.plan}}</td>
-                  <td>{{i.status}}</td>
+      <section  style="background-color:rgb(223, 204, 204)">
+        <div class="container">
+            <h1 class="text-center text-dark" style="font-size: ;50px">User Details</h1>
+                <div class="form">
+                {% for cust in mem %}
+                <label>First Name</label>
+                <h1 class=" form-control">{{ cust.firstname }}</h1>
+                <label>Last Name</label>
+                <p class=" form-control">{{ cust.lastname }}</p>
+                <label>E-mail</label>
+                <h4 class=" form-control">{{ cust.email }}</h4>
+                <label>Password</label>
+                <h4 class=" form-control">{{ cust.password }}</h4>
+                <br>
+                <a class="btn btn-primary" href="{% url 'Usert_edit_profile' %}">Edit</a>
+                <br>
+                {% endfor %}
+        </div>
+        </div>
+    </section >
+    <section class="breadcrumb-section set-bg" style="background-color:rgb(223, 204, 204)"></section>
+		<script src="{% static 'js/jquery.min (2).js' %}"></script>
+		<script src="{% static 'js/bootstrap.min (2).js' %}"></script>
+		<script src="{% static 'js/parallax (2).js' %}"></script>
+		<script src="{% static 'js/wow (2).js' %}"></script>
+		<script src="{% static 'js/main (2).js' %}"></script>
+		<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+		<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'js/jquery.barfiller.js' %}"></script>
+		<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
 
-							  <td><a href="{% url 'onedit' i.id  %}" class="btn btn-primary mb-4">Add</a></td>
-						    </tr>
-							{%endfor %}
-
-						  </tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<script src="{% static 'js/jquery.min (2).js' %}"></script>
-	<script src="{% static 'js/bootstrap.min (2).js' %}"></script>
-	<script src="{% static 'js/parallax (2).js' %}"></script>
-	<script src="{% static 'js/wow (2).js' %}"></script>
-	<script src="{% static 'js/main (2).js' %}"></script>
-	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-	<script src="{% static 'js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-	<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
-	<script src="{% static 'js/jquery.barfiller.js' %}"></script>
-	<script src="{% static 'js/jquery.slicknav.js' %}"></script>
-	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-	<script src="{% static 'js/main.js' %}"></script>
-
-</body>
+	</body>
 </html>
-

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TRAIN WITH US</title>
+    {% load static %}
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/barfiller.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="shortcut icon" href="{% static 'gym.png' %}" />
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <!-- <div id="preloder">
+        <div class="loader"></div>
+    </div> -->
+
+    <!-- Offcanvas Menu Section Begin -->
+    <!-- <img src="{% static 'img/breadcrumb-bg.jpg'%}"> -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="fa fa-close"></i>
+        </div>
+        <div class="canvas-search search-switch">
+            <i class="fa fa-search"></i>
+        </div>
+        <nav class="canvas-menu mobile-menu">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li ><a href="{% url 'about' %}">About Us</a></li>
+                <li ><a href="{% url 'classes' %}">Classes</a></li>
+                <li><a href="{% url 'train' %}">Trainers</a></li>
+                <li><a href="{% url 'shedule' %}">Schedules</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                
+                <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
+                <liclass="active"><a href="{% url 'User_profile' %}">Settings</a></li>
+                <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="canvas-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="./index.html">
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <nav class="nav-menu">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li ><a href="{% url 'about' %}">About Us</a></li>
+                            <li ><a href="{% url 'classes' %}">Classes</a></li>
+                            <li><a href="{% url 'train' %}">Trainers</a></li>
+                            <li><a href="{% url 'shedule' %}">Schedules</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            
+                            <li><a href="{% url 'userpaymentpage' %}">Payment</a></li>
+                            <li class="active"><a href="{% url 'User_profile' %}">Settings</a></li>
+                            <li><a href="{% url 'Trainee_logout' %}">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- <div class="col-lg-3">
+                    <div class="top-option">
+                        <div class="to-se{% url 'index' %}arch search-switch">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="to-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="canvas-open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" style="background-image: url({% static '/img/breadcrumb-bg.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>Profile Setting</h2>
+                        <div class="bt-option">
+                            <a href="{% url 'index' %}">Home</a>
+                            <span>Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  style="background-color:rgb(223, 204, 204)">
+    <div class="container">
+        <h1 class="text-center text-dark" style="font-size: ;50px">User Details</h1>
+            <div class="form">
+            {% for cust in mem1 %}
+            <label>First Name</label>
+            <h1 class=" form-control">{{ cust.firstname }}</h1>
+            <label>Last Name</label>
+            <p class=" form-control">{{ cust.lastname }}</p>
+            <label>E-mail</label>
+            <h4 class=" form-control">{{ cust.email }}</h4>
+            <label>Password</label>
+            <h4 class=" form-control">{{ cust.password }}</h4>
+            <br>
+            <a class="btn btn-primary" href="{% url 'User_edit_profile' %}">Edit</a>
+            <br>
+            {% endfor %}
+    </div>
+    </div>
+</section >
+<section class="breadcrumb-section set-bg" style="background-color:rgb(223, 204, 204)"></section>
+            
+                    <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/masonry.pkgd.min.js"></script>
+  <script src="js/jquery.barfiller.js"></script>
+  <script src="js/jquery.slicknav.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/main.js"></script>
+        </body>
+    </html>

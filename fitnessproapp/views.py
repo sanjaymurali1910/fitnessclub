@@ -101,7 +101,36 @@ def signup(request):
 
 # user side functions(trainee)
 
+def User_profile(request):
+    if 'Tne_id' in request.session:
+        if request.session.has_key('Tne_id'):
+            Tne_id = request.session['Tne_id']
+        else:
+            return redirect('/')
+        mem1 = user_registration.objects.filter(id=Tne_id)
+        return render(request,'User_profile.html',{'mem1':mem1})
+    else:
+        return redirect('/')
 
+def User_edit_profile(request):
+    if 'Tne_id' in request.session:
+        if request.session.has_key('Tne_id'):
+            Tne_id = request.session['Tne_id']
+        else:
+            return redirect('/')
+        mem1 = user_registration.objects.filter(id=Tne_id)
+        pro = user_registration.objects.get(id=Tne_id)
+        if request.method=='POST':
+            usrs = user_registration.objects.get(id=Tne_id)
+            usrs.firstname = request.POST.get('u_name')
+            usrs.lastname = request.POST.get('pincode')
+            usrs.email = request.POST.get('district')
+            usrs.password = request.POST.get('state')
+            usrs.save()
+            return redirect('User_profile')
+        return render(request,'User_edit_profile.html',{'mem1':mem1,'pro':pro})
+    else:
+        return redirect('/')
 
 def index(request):
 	if 'Tne_id' in request.session:
@@ -441,6 +470,39 @@ def maint(request):
 		return render(request, 'maintra.html',{'mem':mem})
 	else:
 		return redirect('/')	
+
+
+
+def Usert_profile(request):
+    if 'Tnr_id' in request.session:
+        if request.session.has_key('Tnr_id'):
+            Tnr_id = request.session['Tnr_id']
+        else:
+            return redirect('/')
+        mem = user_registration.objects.filter(id=Tnr_id)
+        return render(request,'Usert_profile.html',{'mem':mem})
+    else:
+        return redirect('/')
+
+def Usert_edit_profile(request):
+    if 'Tnr_id' in request.session:
+        if request.session.has_key('Tnr_id'):
+            Tnr_id = request.session['Tnr_id']
+        else:
+            return redirect('/')
+        mem = user_registration.objects.filter(id=Tnr_id)
+        pro = user_registration.objects.get(id=Tnr_id)
+        if request.method=='POST':
+            usrs = user_registration.objects.get(id=Tnr_id)
+            usrs.firstname = request.POST.get('u_name')
+            usrs.lastname = request.POST.get('pincode')
+            usrs.email = request.POST.get('district')
+            usrs.password = request.POST.get('state')
+            usrs.save()
+            return redirect('Usert_profile')
+        return render(request,'Usert_edit_profile.html',{'mem':mem,'pro':pro})
+    else:
+        return redirect('/')
 
 
 
